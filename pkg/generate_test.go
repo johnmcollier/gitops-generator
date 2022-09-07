@@ -16,10 +16,11 @@
 package gitops
 
 import (
-	"github.com/redhat-developer/gitops-generator/pkg/testutils"
 	"path/filepath"
 	"reflect"
 	"testing"
+
+	"github.com/redhat-developer/gitops-generator/pkg/testutils"
 
 	routev1 "github.com/openshift/api/route/v1"
 	gitopsv1alpha1 "github.com/redhat-developer/gitops-generator/api/v1alpha1"
@@ -372,6 +373,7 @@ func TestGenerateDeploymentPatch(t *testing.T) {
 				},
 				Spec: appsv1.DeploymentSpec{
 					Replicas: &replicas,
+					Selector: &v1.LabelSelector{},
 					Template: corev1.PodTemplateSpec{
 						Spec: corev1.PodSpec{
 							Containers: []corev1.Container{

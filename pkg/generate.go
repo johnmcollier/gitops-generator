@@ -17,8 +17,9 @@ package gitops
 
 import (
 	"fmt"
-	gitopsv1alpha1 "github.com/redhat-developer/gitops-generator/api/v1alpha1"
 	"path/filepath"
+
+	gitopsv1alpha1 "github.com/redhat-developer/gitops-generator/api/v1alpha1"
 
 	routev1 "github.com/openshift/api/route/v1"
 	"github.com/redhat-developer/gitops-generator/pkg/resources"
@@ -269,6 +270,7 @@ func generateDeploymentPatch(component gitopsv1alpha1.BindingComponentConfigurat
 			Namespace: namespace,
 		},
 		Spec: appsv1.DeploymentSpec{
+			Selector: &v1.LabelSelector{},
 			Template: corev1.PodTemplateSpec{
 				Spec: corev1.PodSpec{
 					Containers: []corev1.Container{
